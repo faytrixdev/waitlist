@@ -1,0 +1,117 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/500.css";
+@import "@fontsource/newsreader/400-italic.css";
+@import "@fontsource/newsreader/500-italic.css";
+@import "@fontsource/newsreader/600-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
+    --font-display: "Newsreader", "Newsreader Fallback", Georgia, serif;
+
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 217 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --pillar-commitment: 152 55% 38%;
+    --pillar-decision: 217 70% 50%;
+    --pillar-event: 258 60% 52%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 4% 16%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 217 70% 95%;
+    --accent-foreground: 240 4% 16%;
+
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 217 70% 50%;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 240 6% 94%;
+
+    --card: 240 10% 4%;
+    --card-foreground: 240 6% 94%;
+
+    --popover: 240 10% 4%;
+    --popover-foreground: 240 6% 94%;
+
+    --primary: 217 80% 65%;
+    --primary-foreground: 240 10% 4%;
+
+    --pillar-commitment: 152 55% 50%;
+    --pillar-decision: 217 80% 65%;
+    --pillar-event: 258 70% 70%;
+
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 240 6% 94%;
+
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 4% 56%;
+
+    --accent: 217 50% 12%;
+    --accent-foreground: 240 6% 94%;
+
+    --destructive: 0 55% 31%;
+    --destructive-foreground: 240 6% 94%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 217 70% 60%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "salt" 1;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
