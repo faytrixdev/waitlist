@@ -131,7 +131,7 @@ export function Hero() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={cn(
-                    "h-12 flex-1 rounded-lg border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50",
+                    "h-12 w-full sm:flex-1 rounded-lg border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50",
                     "transition-colors duration-200 outline-none",
                     "border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/10"
                   )}
