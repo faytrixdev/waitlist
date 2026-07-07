@@ -15,22 +15,20 @@ const ids = ["commitment", "decision", "event", "alerts"] as const;
 const icons = [Target, BookCheck, CalendarClock, Bell] as const;
 
 function CommitmentVisual() {
-  const items = [
-    { label: "Send revised quote (Dupont)", due: "Friday", status: "Today", tone: "text-pillar-commitment", done: false },
-    { label: "Send back signed contract", due: "Tomorrow 5pm", status: "In progress", tone: "text-pillar-decision", done: false },
-    { label: "Confirm call date", due: "Overdue · 2 d", status: "Overdue", tone: "text-destructive", done: false },
-    { label: "Monthly report", due: "Completed yesterday", status: "Done", tone: "text-muted-foreground", done: true },
-  ];
+  const t = useTranslations();
+  const v = t.featuresVisuals.commitment;
 
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-soft">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-foreground">My commitments</h3>
-        <span className="text-[11px] font-mono text-muted-foreground/60">4 total</span>
+        <h3 className="text-sm font-semibold text-foreground">{v.title}</h3>
+        <span className="text-[11px] font-mono text-muted-foreground/60">{v.count}</span>
       </div>
       <div className="space-y-2.5">
-        {items.map((item) => (
-          <div key={item.label} className="flex items-center gap-3 rounded-lg border border-border/50 bg-background/40 px-3.5 py-3">
+        {v.items.map((item, i) => {
+          const tones = ["text-pillar-commitment", "text-pillar-decision", "text-destructive", "text-muted-foreground"];
+          return (
+          <div key={i} className="flex items-center gap-3 rounded-lg border border-border/50 bg-background/40 px-3.5 py-3">
             <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${item.done ? "border-muted-foreground/40 bg-muted-foreground/10" : "border-muted-foreground/30"}`}>
               {item.done && <Check className="h-3 w-3 text-muted-foreground" />}
             </div>
@@ -38,28 +36,28 @@ function CommitmentVisual() {
               <p className={`truncate text-sm font-medium ${item.done ? "text-muted-foreground line-through" : "text-foreground"}`}>{item.label}</p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">{item.due}</p>
             </div>
-            <span className={`text-[11px] font-medium ${item.tone}`}>{item.status}</span>
+            <span className={`text-[11px] font-medium ${tones[i]}`}>{item.status}</span>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 }
 
 function DecisionVisual() {
+  const t = useTranslations();
+  const v = t.featuresVisuals.decision;
+
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-soft">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-foreground">Decision journal</h3>
-        <span className="text-[11px] font-mono text-muted-foreground/60">3 recent</span>
+        <h3 className="text-sm font-semibold text-foreground">{v.title}</h3>
+        <span className="text-[11px] font-mono text-muted-foreground/60">{v.count}</span>
       </div>
       <ul className="space-y-3">
-        {[
-          { label: "Q1 campaign budget set at €15,000", source: "Marie Lambert · Gmail", when: "Yesterday" },
-          { label: "Retail price set at €249 incl. VAT", source: "L. Mercier · Slack #marketing", when: "2 d" },
-          { label: "Going with in-house redesign", source: "Acme · Email", when: "5 d" },
-        ].map((d) => (
-          <li key={d.label} className="border-l-2 border-pillar-decision/40 pl-3">
+        {v.items.map((d, i) => (
+          <li key={i} className="border-l-2 border-pillar-decision/40 pl-3">
             <p className="text-sm font-medium leading-snug text-foreground">{d.label}</p>
             <p className="mt-0.5 text-[11px] text-muted-foreground">{d.source}</p>
           </li>
@@ -70,19 +68,18 @@ function DecisionVisual() {
 }
 
 function EventVisual() {
+  const t = useTranslations();
+  const v = t.featuresVisuals.event;
+
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-soft">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-foreground">Upcoming events</h3>
-        <span className="text-[11px] font-mono text-muted-foreground/60">This week</span>
+        <h3 className="text-sm font-semibold text-foreground">{v.title}</h3>
+        <span className="text-[11px] font-mono text-muted-foreground/60">{v.count}</span>
       </div>
       <ul className="space-y-3">
-        {[
-          { title: "Acme kick-off", when: "Tue Mar 14 · 10:00", where: "Video call" },
-          { title: "Design v2 review", when: "Thu Mar 16 · 14:30", where: "Office" },
-          { title: "Weekly recruiting sync", when: "Mon Mar 20 · 11:00", where: "Slack huddle" },
-        ].map((e) => (
-          <li key={e.title} className="flex items-start gap-3">
+        {v.items.map((e, i) => (
+          <li key={i} className="flex items-start gap-3">
             <div className="mt-1 flex h-8 w-8 shrink-0 flex-col items-center justify-center rounded-md border border-pillar-event/25 bg-pillar-event/[0.05] text-pillar-event">
               <CalendarClock className="h-3.5 w-3.5" />
             </div>
@@ -98,6 +95,9 @@ function EventVisual() {
 }
 
 function AlertsVisual() {
+  const t = useTranslations();
+  const v = t.featuresVisuals.alerts;
+
   return (
     <div className="flex h-full flex-col justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-soft">
       <div className="rounded-lg border border-destructive/25 bg-destructive/[0.05] px-4 py-3.5">
@@ -106,18 +106,18 @@ function AlertsVisual() {
             <Bell className="h-4 w-4" />
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-destructive">Due today</p>
-            <p className="mt-0.5 text-sm text-foreground/80">You promised to send the quote to Sophie Lambert.</p>
-            <p className="mt-1.5 text-[11px] text-muted-foreground">Source message · Gmail · 3 d ago</p>
+            <p className="text-sm font-semibold text-destructive">{v.dueTitle}</p>
+            <p className="mt-0.5 text-sm text-foreground/80">{v.desc}</p>
+            <p className="mt-1.5 text-[11px] text-muted-foreground">{v.meta}</p>
           </div>
         </div>
       </div>
       <div className="mt-3 rounded-lg border border-pillar-commitment/25 bg-pillar-commitment/[0.04] px-4 py-3">
         <div className="flex items-center gap-2 text-xs">
           <span className="inline-flex h-1.5 w-1.5 rounded-full bg-pillar-commitment" />
-          <span className="font-medium text-pillar-commitment">Daily reminder sent</span>
+          <span className="font-medium text-pillar-commitment">{v.reminderTitle}</span>
         </div>
-        <p className="mt-1 pl-3.5 text-[11px] text-muted-foreground">3 commitments today · 1 overdue</p>
+        <p className="mt-1 pl-3.5 text-[11px] text-muted-foreground">{v.reminderCount}</p>
       </div>
     </div>
   );
@@ -164,8 +164,8 @@ function FeatureSection({ feature, index, Icon, id }: {
               {feature.description}
             </p>
             <ul className="mt-7 space-y-3">
-              {feature.bullets.map((bullet) => (
-                <li key={bullet} className="flex items-start gap-3 text-sm">
+              {feature.bullets.map((bullet, bi) => (
+                <li key={bi} className="flex items-start gap-3 text-sm">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span className="text-muted-foreground leading-relaxed">{bullet}</span>
                 </li>

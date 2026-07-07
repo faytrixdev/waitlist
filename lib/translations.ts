@@ -146,6 +146,43 @@ export const translations = {
         },
       ],
     },
+    featuresVisuals: {
+      commitment: {
+        title: "My commitments",
+        count: "4 total",
+        items: [
+          { label: "Send revised quote (Dupont)", due: "Friday", status: "Today", done: false },
+          { label: "Send back signed contract", due: "Tomorrow 5pm", status: "In progress", done: false },
+          { label: "Confirm call date", due: "Overdue · 2 d", status: "Overdue", done: false },
+          { label: "Monthly report", due: "Completed yesterday", status: "Done", done: true },
+        ],
+      },
+      decision: {
+        title: "Decision journal",
+        count: "3 recent",
+        items: [
+          { label: "Q1 campaign budget set at €15,000", source: "Marie Lambert · Gmail", when: "Yesterday" },
+          { label: "Retail price set at €249 incl. VAT", source: "L. Mercier · Slack #marketing", when: "2 d" },
+          { label: "Going with in-house redesign", source: "Acme · Email", when: "5 d" },
+        ],
+      },
+      event: {
+        title: "Upcoming events",
+        count: "This week",
+        items: [
+          { title: "Acme kick-off", when: "Tue Mar 14 · 10:00", where: "Video call" },
+          { title: "Design v2 review", when: "Thu Mar 16 · 14:30", where: "Office" },
+          { title: "Weekly recruiting sync", when: "Mon Mar 20 · 11:00", where: "Slack huddle" },
+        ],
+      },
+      alerts: {
+        dueTitle: "Due today",
+        desc: "You promised to send the quote to Sophie Lambert.",
+        meta: "Source message · Gmail · 3 d ago",
+        reminderTitle: "Daily reminder sent",
+        reminderCount: "3 commitments today · 1 overdue",
+      },
+    },
     stats: {
       title: "What Flowrio ",
       titleAccent: "changes for you.",
@@ -382,6 +419,43 @@ export const translations = {
           ],
         },
       ],
+    },
+    featuresVisuals: {
+      commitment: {
+        title: "Mes engagements",
+        count: "4 au total",
+        items: [
+          { label: "Envoyer le devis révisé (Dupont)", due: "Vendredi", status: "Aujourd'hui", done: false },
+          { label: "Retourner le contrat signé", due: "Demain 17h", status: "En cours", done: false },
+          { label: "Confirmer la date d'appel", due: "En retard · 2 j", status: "En retard", done: false },
+          { label: "Rapport mensuel", due: "Terminé hier", status: "Fait", done: true },
+        ],
+      },
+      decision: {
+        title: "Journal des décisions",
+        count: "3 récents",
+        items: [
+          { label: "Budget campagne Q1 fixé à 15 000 €", source: "Marie Lambert · Gmail", when: "Hier" },
+          { label: "Prix de vente fixé à 249 € TTC", source: "L. Mercier · Slack #marketing", when: "2 j" },
+          { label: "On part sur une refonte en interne", source: "Acme · Email", when: "5 j" },
+        ],
+      },
+      event: {
+        title: "Événements à venir",
+        count: "Cette semaine",
+        items: [
+          { title: "Kick-off Acme", when: "Mar 14 · 10:00", where: "Visio" },
+          { title: "Revue Design v2", when: "Jeu 16 · 14:30", where: "Bureau" },
+          { title: "Sync recrutement hebdo", when: "Lun 20 · 11:00", where: "Slack huddle" },
+        ],
+      },
+      alerts: {
+        dueTitle: "À faire aujourd'hui",
+        desc: "Vous avez promis d'envoyer le devis à Sophie Lambert.",
+        meta: "Message source · Gmail · il y a 3 j",
+        reminderTitle: "Rappel quotidien envoyé",
+        reminderCount: "3 engagements aujourd'hui · 1 en retard",
+      },
     },
     stats: {
       title: "Ce que Flowrio vous ",

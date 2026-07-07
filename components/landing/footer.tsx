@@ -29,12 +29,12 @@ export function Footer() {
               {t.footer.description}
             </p>
           </div>
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
+          {Object.entries(footerLinks).map(([category, links], ci) => (
+            <div key={ci}>
               <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-foreground/60">{category}</h3>
               <ul className="mt-4 space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.label}>
+                {links.map((link, li) => (
+                  <li key={li}>
                     <Link href={link.href} className="text-sm text-muted-foreground/50 transition-colors duration-300 hover:text-foreground">
                       {link.label}
                     </Link>

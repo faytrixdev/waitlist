@@ -43,7 +43,7 @@ export function Comparison() {
             const Icon = icons[i];
             return (
               <motion.article
-                key={c.title}
+                key={i}
                 variants={fadeUp}
                 className="flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft"
               >

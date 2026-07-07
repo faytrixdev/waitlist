@@ -67,7 +67,7 @@ export function Pillars() {
 
             return (
               <motion.article
-                key={pillar.title}
+                key={i}
                 variants={fadeUp}
                 className={`group relative flex flex-col rounded-2xl border bg-card p-7 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-softmd ${tone.border}`}
               >
@@ -99,9 +99,9 @@ export function Pillars() {
                 </div>
 
                 <ul className="mt-6 space-y-2.5">
-                  {pillar.bullets.map((bullet) => (
+                  {pillar.bullets.map((bullet, bi) => (
                     <li
-                      key={bullet}
+                      key={bi}
                       className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
                     >
                       <span

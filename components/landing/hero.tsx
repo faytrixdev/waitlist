@@ -249,7 +249,7 @@ export function Hero() {
                 {t.hero.outputs.map((o, i) => {
                   const Icon = outputIcons[i];
                   return (
-                    <li key={o.label} className={`flex items-start gap-2.5 rounded-lg border px-3.5 py-2.5 ${tones[i]}`}>
+                    <li key={i} className={`flex items-start gap-2.5 rounded-lg border px-3.5 py-2.5 ${tones[i]}`}>
                       <Icon className="mt-0.5 h-4 w-4 shrink-0" />
                       <div className="min-w-0">
                         <p className="text-xs font-semibold uppercase tracking-wider">{o.label}</p>

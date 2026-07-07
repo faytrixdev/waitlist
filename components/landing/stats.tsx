@@ -30,9 +30,9 @@ export function Stats() {
           viewport={viewport}
           className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 md:grid-cols-4"
         >
-          {t.stats.items.map((f) => (
+          {t.stats.items.map((f, i) => (
             <motion.div
-              key={f.label}
+              key={i}
               variants={fadeUp}
               className="flex flex-col gap-1 bg-card px-6 py-7 text-center"
             >
