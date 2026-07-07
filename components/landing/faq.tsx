@@ -6,32 +6,11 @@ import { cn } from "@/lib/utils";
 import { Link } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { viewport } from "@/lib/utils/animations";
-
-const faqs = [
-  {
-    q: "C'est quoi exactement Flowrio ?",
-    a: "Une mémoire opérationnelle pour vos messageries. Flowrio lit vos messages Gmail, Slack et WhatsApp, identifie les engagements, les décisions et les événements qui s'y échangent, et vous les restitue suivis — sans que vous ayez à saisir quoi que ce soit.",
-  },
-  {
-    q: "L'IA distingue vraiment un engagement d'une simple discussion ?",
-    a: "Oui. L'IA est entraînée sur des formulations d'engagement et de décision en français professionnel. Les politesses, réflexions générales et bruit sont filtrés. Chaque item a un score de confiance — les éléments douteux sont signalés et vous pouvez les ignorer d'un clic.",
-  },
-  {
-    q: "Mes données sont lues par qui ?",
-    a: "Uniquement par l'IA de Flowrio pour extraire les signaux. Vos messages ne sont jamais revendus, jamais utilisés pour entraîner des modèles publics. Vous pouvez exporter toutes vos données à tout moment, et tout supprimer en un clic.",
-  },
-  {
-    q: "En quoi c'est différent de ChatGPT ou Copilot ?",
-    a: "Un assistant génératif attend une question. Flowrio est proactif : il surveille vos communications en continu et vous alerte avant qu'un engagement ne soit oublié — sans que vous ayez à lui demander.",
-  },
-  {
-    q: "Quand est-ce que Flowrio sera disponible ?",
-    a: "Flowrio est en phase de développement avancé. Rejoignez la waitlist pour être informé·e dès le lancement et bénéficier d'un accès prioritaire. Les premiers inscrits auront un accès anticipé.",
-  },
-];
+import { useTranslations } from "@/lib/use-translations";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const t = useTranslations();
 
   return (
     <section id="faq" className="relative py-14 sm:py-20 md:py-24">
@@ -44,14 +23,14 @@ export function FAQ() {
             transition={{ duration: 0.5 }}
           >
             <span className="text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground/60">
-              Questions fréquentes
+              {t.faq.label}
             </span>
             <h2 className="mt-5 font-display text-3xl leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Tout ce que vous voulez savoir{" "}
-              <span className="italic font-medium text-primary">avant d'essayer.</span>
+              {t.faq.title}
+              <span className="italic font-medium text-primary">{t.faq.titleAccent}</span>
             </h2>
             <p className="mt-5 text-sm text-muted-foreground">
-              Une autre question ? Écrivez-nous, on répond en moins de 2 h en semaine.
+              {t.faq.description}
             </p>
             <a
               href="mailto:contact@flowrio.com"
@@ -61,12 +40,12 @@ export function FAQ() {
               )}
             >
               <Link className="h-3.5 w-3.5" />
-              Nous écrire
+              {t.faq.writeUs}
             </a>
           </motion.div>
 
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
+            {t.faq.items.map((faq, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 12 }}

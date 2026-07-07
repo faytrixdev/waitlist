@@ -1,18 +1,21 @@
-import Link from "next/link";
+"use client";
 
-const footerLinks = {
-  Produit: [
-    { label: "Fonctionnalités", href: "/#features" },
-    { label: "Waitlist", href: "/#waitlist" },
-  ],
-  Légal: [
-    { label: "Confidentialité", href: "#" },
-    { label: "CGU", href: "#" },
-    { label: "RGPD", href: "#" },
-  ],
-};
+import Link from "next/link";
+import { useTranslations } from "@/lib/use-translations";
 
 export function Footer() {
+  const t = useTranslations();
+
+  const footerLinks: Record<string, { label: string; href: string }[]> = {};
+  footerLinks[t.footer.product] = [
+    { label: t.footer.features, href: "/#features" },
+    { label: t.footer.waitlist, href: "/#waitlist" },
+  ];
+  footerLinks[t.footer.legal] = [
+    { label: t.footer.privacy, href: "#" },
+    { label: t.footer.tos, href: "#" },
+  ];
+
   return (
     <footer className="border-t border-border/40 bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -23,7 +26,7 @@ export function Footer() {
               <span className="font-sans font-semibold text-sm text-foreground">Flowrio</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground/60">
-              La mémoire opérationnelle de vos messageries. Flowrio détecte vos engagements, décisions et événements Gmail, Slack et WhatsApp — pour que rien ne se perde.
+              {t.footer.description}
             </p>
           </div>
           {Object.entries(footerLinks).map(([category, links]) => (
@@ -42,7 +45,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 border-t border-border/30 pt-8 text-center">
-          <p className="text-xs text-muted-foreground/30">&copy; {new Date().getFullYear()} Flowrio. Tous droits réservés.</p>
+          <p className="text-xs text-muted-foreground/30">&copy; {new Date().getFullYear()} Flowrio. {t.footer.rights}</p>
         </div>
       </div>
     </footer>

@@ -2,15 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { label: "Fonctionnalités", href: "/#features" },
-  { label: "Comment ça marche", href: "/#how-it-works" },
-  { label: "FAQ", href: "/#faq" },
-];
+import { useLanguage } from "@/components/language-provider";
+import { useTranslations } from "@/lib/use-translations";
+import type { Lang } from "@/lib/translations";
 
 function scrollToHash(href: string) {
   const hash = href.split("#")[1];
@@ -26,12 +23,20 @@ function scrollToHash(href: string) {
 export function FloatingHeader() {
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const { lang, setLang } = useLanguage();
+  const t = useTranslations();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const navLinks = [
+    { label: t.header.features, href: "/#features" },
+    { label: t.header.howItWorks, href: "/#how-it-works" },
+    { label: t.header.faq, href: "/#faq" },
+  ];
 
   return (
     <header
@@ -80,8 +85,19 @@ export function FloatingHeader() {
         </div>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setLang(lang === "en" ? "fr" : "en")}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-border/30 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:border-border/60 hover:text-foreground"
+            aria-label="Toggle language"
+          >
+            <Globe className="h-3.5 w-3.5" />
+            {lang === "en" ? "FR" : "EN"}
+          </button>
+
           <Button size="sm" className="shadow-sm" asChild>
-            <a href="/#waitlist" onClick={(e) => { e.preventDefault(); scrollToHash("/#waitlist"); }}>Rejoindre la waitlist</a>
+            <a href="/#waitlist" onClick={(e) => { e.preventDefault(); scrollToHash("/#waitlist"); }}>
+              {t.header.join}
+            </a>
           </Button>
 
           <button
@@ -122,10 +138,17 @@ export function FloatingHeader() {
               </a>
             ))}
           </div>
-          <div className="mt-3 border-t border-border/30 pt-3">
+          <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border/30 pt-3">
+            <button
+              onClick={() => { setLang(lang === "en" ? "fr" : "en"); setOpen(false); }}
+              className="flex items-center justify-center gap-1.5 rounded-lg border border-border/30 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:border-border/60 hover:text-foreground"
+            >
+              <Globe className="h-3.5 w-3.5" />
+              {lang === "en" ? "FR" : "EN"}
+            </button>
             <Button size="sm" className="w-full" asChild>
               <a href="/#waitlist" onClick={(e) => { e.preventDefault(); scrollToHash("/#waitlist"); setOpen(false); }}>
-                Rejoindre la waitlist
+                {t.header.join}
               </a>
             </Button>
           </div>

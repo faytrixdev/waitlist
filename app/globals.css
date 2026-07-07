@@ -112,6 +112,20 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes arrowLeft {
+  0% { left: -2.5rem; opacity: 0; }
+  4% { left: -2.3rem; opacity: 1; }
+  88% { left: 3.3rem; opacity: 1; }
+  92%, 100% { left: 3.5rem; opacity: 0; }
+}
+
+@keyframes arrowRight {
+  0% { left: 3.5rem; opacity: 0; }
+  4% { left: 3.7rem; opacity: 1; }
+  88% { left: 9.3rem; opacity: 1; }
+  92%, 100% { left: 9.5rem; opacity: 0; }
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
